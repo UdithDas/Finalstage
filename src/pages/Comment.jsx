@@ -54,19 +54,28 @@ useEffect(()=>{
     }
 
     const addHandler =(event) =>{
-        event.preventDefault();
-        axios.post("http://localhost:3005/new",inputs)
-        .then((response) =>{
-        alert("Record Saved")
-        navigate('/Analytics');
-        })
-        .catch(err=>console.log(err))
-        }
-        
-        
-        
-        
+      event.preventDefault();
+      const trimmedInputs = Object.fromEntries(
+        Object.entries(inputs).map(([key, value]) => [key, value.trim()])
+      );
     
+      
+      if (Object.values(trimmedInputs).some((value) => value === '')) {
+        alert('Please fill in all required fields.');
+        return;
+      } 
+      axios.post("http://localhost:3005/new",inputs)
+      .then((response) =>{
+      alert("Record Saved")
+      navigate('/Analytics');
+      })
+      .catch(err=>console.log(err))
+      }
+        
+        
+        
+        
+
 
      
 
@@ -80,9 +89,10 @@ useEffect(()=>{
             
             <select name="type" value={inputs.type} onChange={inputHandler}  >
         {
+
             type.map((value,index)=>{
                 return(
-                    <option key={index} value={value.type}>{value.type}</option>
+                    <option key={index} value={value._id}>{value.type}</option>
                 )
 
 
@@ -94,7 +104,7 @@ useEffect(()=>{
         {
             rating.map((value,index)=>{
                 return(
-                    <option key={index} value={value.rating}>{value.rating}</option>
+                    <option key={index} value={value._id}>{value.rating}</option>
                 )
 
 

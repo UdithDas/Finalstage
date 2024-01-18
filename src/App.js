@@ -12,10 +12,13 @@ import Body from './pages/Body.jsx';
 
 const App = () => {
   return (
+    
     <BrowserRouter>
+    
       <Sidebar>
         <Routes>
-          <Route path="/Login" element={<Body/>} />
+          {/* <Route path="/" element={<Body/>} /> */}
+          
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Comment method='post' />} />
@@ -23,7 +26,7 @@ const App = () => {
           <Route path="/product" element={<Product />} />
           <Route path="/productList" element={<ProductList />} />
         </Routes>
-      </Sidebar>
+     </Sidebar>
     </BrowserRouter>
   );
 };

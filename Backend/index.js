@@ -57,10 +57,18 @@ app.post('/rate',(request,response)=>{
 // for retriving data
 
     app.get("/rview",async(request,response)=>{
-        var data=await ratingmodel.find();
-        response.send(data);
-    })
-
+        const result = await ratingmodel.aggregate([
+            {
+              $lookup: {
+                from: 'registers', // Name of the other collection
+                localField: 'rating', // field of item
+                foreignField: '_id', //field of category
+                as: 'stud',
+              },
+            },
+          ]);
+          response.send(result)
+        })
 //for type
 app.get("/tview",async(request,response)=>{
     var data=await typemodel.find();

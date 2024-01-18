@@ -7,17 +7,17 @@ import {
     FaEdit,
     FaStar,
     FaGlassCheers,
-    FaAddressCard
+    FaAddressCard,
+    FaPowerOff
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
     const menuItem=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<FaTh/>
         },
@@ -47,6 +47,11 @@ const Sidebar = ({children}) => {
             path:"/analytics",
             name:"Restuarant Details",
             icon:<FaAddressCard/>
+        },
+        {
+            path:"/",
+            name:"LogOut",
+            icon:<FaPowerOff/>
         }
     ]
     return (

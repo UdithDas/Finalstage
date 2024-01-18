@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from './Input';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
+import { isloggedin, changestatus } from './logindata'
 
 const Body = () => {
     const user = {
@@ -78,7 +78,8 @@ const navigate = useNavigate();
         if (isUsernameValid && isPasswordValid) {
             if (username === user.username && password === user.password) {
                 toast.success('Logging Successful');
-                navigate('/');
+                navigate('/dashboard');
+                changestatus(true);
                 setInputValue({
                     username: '',
                     password: '',
